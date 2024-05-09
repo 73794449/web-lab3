@@ -64,7 +64,7 @@ export default {
         if(user == null | user == 'null')
         {
             alert("Login first");
-            this.$router.push({ name: 'Home page' }).then(() => { this.$router.go(0) });    
+            //this.$router.push({ name: 'Home page' }).then(() => { this.$router.go(0) });    
         }
     },
     mounted()

@@ -40,7 +40,7 @@ export default {
         isLogon()
         {            
             let val = this.active;
-            val = val.substring(0,val.length-5);
+            val = val?.substring(0,val.length-5);
             if(val == 'Home' | val == 'Login' | val == 'Register' | val == 'About')
                 return "false";
             else
@@ -97,8 +97,8 @@ export default {
         },
         isActive(k)
         {
-            let val = this.active;
-            val = val.substring(0,val.length-5);
+            let val = toString();
+            val = val?.substring(0,val.length-5);
             return this.moveToName(k) == val ? true : false;
         }
     }
