@@ -14,7 +14,7 @@
 
 ## Інструменти розробки
 
-JavaScript, VueJS, NodeJS
+JavaScript, VueJS, NodeJS, Express, MongoDB
 
 ## Ініціалізація проекту front
 
@@ -39,4 +39,22 @@ npm run build
 
 ```
 npm run lint
+```
+
+## Ініціалізація проекту back
+```
+cd t3-back
+npm install
+```
+Не забудьте замінити db url на свій якщо використовуєте не локальну базу даних.
+
+### Компіляція 
+```
+node ./server.js
+```
+
+### Компіляція з hot-reload
+```
+npm install --save-dev nodemon
+nodemon ./server.js
 ```
