@@ -1,0 +1,6 @@
+t3-calc/node_modules/**
+t3-calc/node_modules
+t3-calc/dist/**
+t3-calc/dist
+t3-back/node_modules/**
+t3-back/node_modules
