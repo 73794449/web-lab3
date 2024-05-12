@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Tutorial
+  // Create a User
   const user = new User({
     email: req.body.email,
     password: req.body.password,
@@ -56,32 +56,27 @@ exports.findOneEmail = (req, res) => {
       message: "Data to update can not be empty!"
     });
   }
-
-  const email = req.params.email;
-  const password = req.params.password;
-
-  User.findOne({ email: email })
+  let somemail = req.body.email;
+  User.findOne({ email:  somemail})
     .then(data => {
       if (!data)
-        res.status(404).send({ message: "Not found User with email " + email });
-    })
+        res.status(404).send({ message: "Not found User with email " + req.params.email });
+      else
+        {
+          if (data.password == req.body.password)
+            {
+              res.send(data);
+            }
+            else
+              res.status(401).send({message:"Incorrect password"})
+        }
+      })
     .catch(err => {
       res
         .status(500)
-        .send({ message: "Error retrieving User with email " + email });
+        .send({ message: "Error retrieving User with email " + somemail });
     });
 
-  User.findOne({ email: email, password: password })
-    .then(data => {
-      if (!data)
-        res.status(404).send({ message: "Incorrect password for User with email " + email });
-      else res.send(data);
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .send({ message: "Error retrieving User with email " + email });
-    });
 };
 
 // Update a User by the id in the request
@@ -92,42 +87,21 @@ exports.update = (req, res) => {
     });
   }
 
-  const id = req.params.id;
+  const userid = req.body.id;
+  const newPass = req.body.password;
 
-  User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  console.log(userid);
+    User.findByIdAndUpdate(userid, {password: newPass}, {new: true})
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update User with id=${id}. Maybe User was not found!`
+          message: `Cannot update User with id=${userid}. Maybe User was not found!`
         });
-      } else res.send({ message: "User was updated successfully." });
+      } else res.send(data);
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating User with id=" + id
-      });
-    });
-};
-
-// Delete a User with the specified id in the request
-exports.delete = (req, res) => {
-  const id = req.params.id;
-
-  User.findByIdAndRemove(id, { useFindAndModify: false })
-    .then(data => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot delete User with id=${id}. Maybe User was not found!`
-        });
-      } else {
-        res.send({
-          message: "User was deleted successfully!"
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Could not delete User with id=" + id
+        message: `Error updating User with id=${userid}`
       });
     });
 };

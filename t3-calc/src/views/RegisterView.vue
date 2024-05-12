@@ -81,15 +81,14 @@ let userModel = new UserModel();
 let userView = new UserView(userModel);
 
 let controller = new ControllerUser(userModel, userView);
-
 export default {
   name: 'RegisterView',
   components: {
     FooterComponent,
   },
   methods: {
-        goRegister() { 
-            controller.registerMe(this);
+        async goRegister() { 
+            await controller.registerMe(this);
         }
     }
 };

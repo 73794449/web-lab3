@@ -64,11 +64,11 @@ export default {
                     this.$router.push({ name: 'Profile page' });
                 else if (i == 2){
                     this.$router.push({ name: 'Home page' });
-                    localStorage.setItem('current-user',null);
+                    localStorage.removeItem('current-user');
                 }
                 else if (i == 3){
                     this.$router.push({ name: 'About page' });
-                    localStorage.setItem('current-user',null);
+                    localStorage.removeItem('current-user');
                 }
             }
 

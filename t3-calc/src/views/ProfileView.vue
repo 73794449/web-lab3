@@ -38,7 +38,7 @@
             <input id="password" type="password" class="form-control" placeholder="********" aria-label="********"
                 aria-describedby="basic-addon1">
             <div class="container my-2 text-center">
-                <button id="update-button" class="btn my-button-color">Change password</button>
+                <button @click="updateButton" id="update-button" class="btn my-button-color">Change password</button>
             </div>
         </div>
     </main>
@@ -61,16 +61,22 @@ export default {
     beforeMount()
     {
         let user = localStorage.getItem('current-user');
-        if(user == null | user == 'null')
+        if(user == null)
         {
             alert("Login first");
-            //this.$router.push({ name: 'Home page' }).then(() => { this.$router.go(0) });    
+            this.$router.push({ name: 'Home page' }).then(() => { this.$router.go(0) });    
         }
     },
-    mounted()
+    async mounted()
     {
-        controller.updateMe();
-    }
+        await controller.updateMe();
+    },
+    methods: {
+        async updateButton()
+        {
+            await controller.updatePasswordMe();
+        }
+    },
     
 }
 </script>

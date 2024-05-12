@@ -1,7 +1,7 @@
-export default class UserView{
+export default class UserView {
     constructor(userModel) {
         this.userModel = userModel;
-    }   
+    }
 
     registerStatus() {
         alert('Registration status: ' + this.userModel.status);

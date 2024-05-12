@@ -4,29 +4,25 @@ export default class ControllerUser {
         this.userView = userView;
     }
 
-    registerMe(base) {
-        this.userModel.register();
+    async registerMe(base) {
+        await this.userModel.register();
         if (this.userModel.status === 'Done')
             base.$router.push({ name: 'Login page' });
-        else
-            this.userView.registerStatus();
     }
 
-    loginMe(base) {
-        this.userModel.login();
+    async loginMe(base) {
+        await this.userModel.login();
         if (this.userModel.status === 'Login') 
             base.$router.push({ name: 'Profile page' });
-        else
-            this.userView.loginStatus();
     }
 
-    updateMe() {
-        this.userModel.select();
+    async updateMe() {
+        await this.userModel.select();
         this.userView.selectData();
     }
 
-    updatePasswordMe() {
-        this.userModel.update();
+    async updatePasswordMe() {
+        await this.userModel.update();
         this.userView.updateStatus();
     }
 }

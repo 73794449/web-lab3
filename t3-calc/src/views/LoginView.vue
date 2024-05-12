@@ -51,8 +51,8 @@ export default {
         FooterComponent,
     },
     methods: {
-        goLogin() { 
-            controller.loginMe(this);
+        async goLogin() { 
+            await controller.loginMe(this);
         }
     }
 };

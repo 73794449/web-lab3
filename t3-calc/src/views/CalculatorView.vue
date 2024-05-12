@@ -164,7 +164,7 @@ export default {
     beforeMount()
     {
         let user = localStorage.getItem('current-user');
-        if(user == null | user == 'null')
+        if(user == null)
         {
             alert("Login first");
             this.$router.push({ name: 'Home page' }).then(() => { this.$router.go(0) })  
